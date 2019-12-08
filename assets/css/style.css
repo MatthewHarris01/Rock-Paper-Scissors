@@ -1,0 +1,22 @@
+
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p.playerwins {
+  font-weight: bold;
+  font-size:18pt;
+  color: green;
+}
+
+p.playerlosses {
+  font-weight: bold;
+  font-size:18pt;
+  color: red;
+}
+
+p.playerties {
+  font-weight: bold;
+  font-size:18pt;
+  color: grey;
+}

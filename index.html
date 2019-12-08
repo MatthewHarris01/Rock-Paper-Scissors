@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta author="Matthew S Harris">
+    <title>Rock Paper Scissors Game</title>
+    <!-- <link rel="stylesheet" type="css/text" href="assets/css/style.css" > -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css> -->
+  </head>
+
+  <body>
+
+    <!-- <div id="game">
+
+    </div> -->
+
+    <script type="text/javascript">
+      var userGuess;  //user move
+      var userWins = 0
+      var computerWins = 0;
+      var Ties = 0;
+
+      // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+      var computerChoices = ["r", "p", "s"];
+
+      function isValid(user) {
+        // the parameter "user" is the user's keystroke
+        // returns True if the the user input is one of "r", "p" or "s", False otherwise.
+        console.log(user);
+        return (user =="s" || user == "r" || user == "p")
+        
+      }
+
+      function isWinner(user, cmp) {
+        //this function returns a value showing whether the user won, lost or tied
+        // the user parameter is the user's move
+        // the cmp parameter is the computer's move
+        //a retun value of 0 is a tie
+        // a return value of 1 is a user win
+        // a retrun value of 2 is a user loss
+        var rslt = 0; //assume a tie 
+
+        console.log("executing isWinner");
+        console.log(" user move is " + user);
+        console.log("computer move is " + cmp);
+
+        //test for a tie, first, since that is the easiest test to make.
+        if (user == cmp) {
+          rslt = 0;  //TIE
+          console.log("TIE");
+          return rslt;
+        }
+
+        //if user move is S it beats paper, but loses to all others.
+        if (user == "s" && cmp == "p") {
+          rslt =  1; // player win
+          console.log("PLAYER WIN");
+        }
+        else if (user == "r" && cmp == "s") {
+          //if user move is r it beats scissors and loses to all others
+          rslt =  1; //player win
+          console.log("PLAYER WIN");
+        }
+        else if (user == "p" && cmp == "r") {
+          //if user move is p it beats rock and loses to all others
+          rslt =  1;
+          console.log("PLAYER WIN");
+        }
+        else {
+          //if we get here, the user lost the match
+          rslt = 2;
+          console.log("PLAYER LOSS");
+        }
+
+
+
+
+        // at this point, return the rslt value
+        return rslt;
+
+
+      }
+
+      // This function executes whenever the user presses a key.
+      document.onkeyup = function (event) {
+        // Determine which key was pressed, convert keypress to lower case in case the user has Caps Lock on.
+        var userGuess = event.key.toLowerCase();
+        //ensure user picked one of "r", "p" or "s"
+        if (isValid(userGuess)) {
+          //get computer move, and compare it to the user input to see who wins
+          console.log("user choice " + userGuess); // report whether input is valid
+
+         //now get the computer choice
+        // Randomly choose a choice from the options array. This is the Computer's guess.
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        console.log("computer choice is: " + computerGuess);
+        
+        // call the function that determines if user wins, loses or ties. a return value of 0 is a user tie, 1 is user win, 2 is user loss
+        var temp = isWinner(userGuess, computerGuess);
+        if (temp == 0) {
+          //user ties
+          console.log("TIE");        
+        }
+        else if (temp == 1) {
+          console.log("USER WIN");
+        }
+        else {
+          console.log("USER LOSS");
+        }
+
+        }
+        else {
+          //inform user of invalid input -- this else clause belongs to "if isValid(userGuess"
+          alert("You MUST use the keys 'r', 'p'  or 's' for your move! Please try again.");
+        }
+
+
+        // Alerts the key the user pressed (userGuess).
+        // for(userGuess=""; (userGuess != "r" && userGuess != "p" && userGuess != userGuess); userG
+        // computerWins < 100; )
+
+
+        // alert("User guess: " + userGuess);
+
+        // Alerts the Computer's guess.
+        // alert("Computer guess: " + computerGuess);
+
+        //code to determine winner of current round
+
+
+        //alerts to display current count of user wins, computer wins, and ties.
+        // alert("User Wins: " + userWins);
+        // alert("Computer Wins: " + computerWins);
+        // alert("Ties " + Ties);
+      }
+    </script>
+
+    <h1 style="text-align:center;">PLAY THE GAME 'Rock, Paper, Scissors' AGAINST THE COMPUTER!</h1>
+
+    <p class = "playerwins"id="wins">Wins: </p>
+      <p class="playerlosses" id="losses">Losses: </p>
+      <p class="playerties" id="ties">Ties: </p>
+
+    <div style="margin-left:auto;margin-right:auto;float:left;">
+      <img style="margin-right:25pt;border:2px solid green;" src="assets/images/RPS.png"
+        alt="Rock, Paper, Scissors image.">
+    </div>
+
+
+    <h2>Rules of the game</h2>
+    <p>the rules for this game are simple:</p>
+    <ol style="margn-left:25pt;">
+      <li>You press a key on your keyboard to select your move.</strong></li>
+      <li>The computer selects its move randomly.</li>
+      <li>Your move is compared to the computer's move to determine the winner.</li>
+
+    </ol>
+
+    <h2>How to play</h2>
+    <ul>
+      <li>Start play by pressing a key on your keyboard to select your move. <strong>You must press only the keys "R", "P", or
+          "S".</strong></li>
+      <li>press "r" to select "rock" for your move. ("p" selects Paper, and "s" selects "scissors".</li>
+    </ul>
+
+    <h2>How a winning move is determined</h2>
+    <p>A winning move is determined according to these rules:</p>
+
+    <ul>
+        <li>Scissors beats Paper</li>
+        <li>Paper beats Rock</li>
+        <li>Rock beats Scissors</li>
+    </ul>
+
+
+
+  </body>
+
+</html>
