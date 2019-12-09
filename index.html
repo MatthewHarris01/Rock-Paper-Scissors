@@ -19,6 +19,7 @@
     <script type="text/javascript">
       var userGuess;  //user move
       var userWins = 0
+      var userLosses = 0;
       var computerWins = 0;
       var Ties = 0;
 
@@ -49,6 +50,7 @@
         //test for a tie, first, since that is the easiest test to make.
         if (user == cmp) {
           rslt = 0;  //TIE
+          Ties += 1;
           console.log("TIE");
           return rslt;
         }
@@ -56,21 +58,26 @@
         //if user move is S it beats paper, but loses to all others.
         if (user == "s" && cmp == "p") {
           rslt =  1; // player win
-          console.log("PLAYER WIN");
+          userWins += 1;
+
+          console.log("PLAYER WINs: " + userWins);
         }
         else if (user == "r" && cmp == "s") {
           //if user move is r it beats scissors and loses to all others
           rslt =  1; //player win
-          console.log("PLAYER WIN");
+          userWins += 1;
+          console.log("PLAYER WINs: " + userWins);
         }
         else if (user == "p" && cmp == "r") {
           //if user move is p it beats rock and loses to all others
           rslt =  1;
-          console.log("PLAYER WIN");
+          userWins +=1
+          console.log("PLAYER WINs: " + userWins);
         }
         else {
           //if we get here, the user lost the match
           rslt = 2;
+          userLosses += 1;
           console.log("PLAYER LOSS");
         }
 
@@ -79,8 +86,27 @@
 
         // at this point, return the rslt value
         return rslt;
+      }
 
+      function playsound(soundid) {
+        var x;
+        console.log("in playsound function, value of soundid is: "+ soundid);
+        if (soundid == 0) {
+          console.log("play tie sound");
+          x = document.getElementById("tiesound"); 
+          x.play(); 
+        }
+        else if (soundid == 1) {
+          console.log("play win sound");
+          x = document.getElementById("winsound"); 
+          x.play(); 
+        }
+        else {
+          console.log("play lose sound");
+          x = document.getElementById("losesound"); 
+          x.play(); 
 
+        }
       }
 
       // This function executes whenever the user presses a key.
@@ -99,9 +125,13 @@
         
         // call the function that determines if user wins, loses or ties. a return value of 0 is a user tie, 1 is user win, 2 is user loss
         var temp = isWinner(userGuess, computerGuess);
+        console.log("isWinner result is: " + temp);
+        playsound(temp);
         if (temp == 0) {
           //user ties
-          console.log("TIE");        
+          console.log("TIE");  
+          console.log("play tie sound")      ;
+
         }
         else if (temp == 1) {
           console.log("USER WIN");
@@ -116,32 +146,39 @@
           alert("You MUST use the keys 'r', 'p'  or 's' for your move! Please try again.");
         }
 
-
-        // Alerts the key the user pressed (userGuess).
-        // for(userGuess=""; (userGuess != "r" && userGuess != "p" && userGuess != userGuess); userG
-        // computerWins < 100; )
-
-
-        // alert("User guess: " + userGuess);
-
-        // Alerts the Computer's guess.
-        // alert("Computer guess: " + computerGuess);
-
-        //code to determine winner of current round
-
-
-        //alerts to display current count of user wins, computer wins, and ties.
-        // alert("User Wins: " + userWins);
-        // alert("Computer Wins: " + computerWins);
-        // alert("Ties " + Ties);
+        // write out  wins, losses, ties
+        
+        console.log("updating scores below");
+        console.log("make scoreboard visible")
+        document.getElementById("scoreboard").style.display="block";
+         document.getElementById("wins").innerHTML = userWins;
+         document.getElementById("losses").innerHTML =  userLosses;
+         document.getElementById("ties").innerHTML =  Ties;
       }
     </script>
 
     <h1 style="text-align:center;">PLAY THE GAME 'Rock, Paper, Scissors' AGAINST THE COMPUTER!</h1>
 
-    <p class = "playerwins"id="wins">Wins: </p>
+    <div id="scoreboard" style="width:100%;height: 75px;border:2px solid blue;display:none;">
+      <table style="border:px solid blue;border-collapse:collapse;width:50%;margin-left:auto;margin-right:auto;">
+        <tr>
+          <th class="sbcellwin">WINS</th>
+          <th class="sbcelllose">LOSSES</th>
+          <th class="sbcelltie">TIES</th>
+        </tr>
+        <tr>
+          <td id="wins" class="sbcellwin">0</td>
+          <td id="losses" class ="sbcelllose">0</td>
+          <td id="ties" class ="sbcelltie"> 14 </td>
+      </tr>
+      </table>
+
+    </div>
+
+
+    <!-- <p class = "playerwins"id="wins">Wins: </p>
       <p class="playerlosses" id="losses">Losses: </p>
-      <p class="playerties" id="ties">Ties: </p>
+      <p class="playerties" id="ties">Ties: </p> -->
 
     <div style="margin-left:auto;margin-right:auto;float:left;">
       <img style="margin-right:25pt;border:2px solid green;" src="assets/images/RPS.png"
@@ -151,7 +188,7 @@
 
     <h2>Rules of the game</h2>
     <p>the rules for this game are simple:</p>
-    <ol style="margn-left:25pt;">
+    <ol style="margin-left:25pt;">
       <li>You press a key on your keyboard to select your move.</strong></li>
       <li>The computer selects its move randomly.</li>
       <li>Your move is compared to the computer's move to determine the winner.</li>
@@ -174,7 +211,16 @@
         <li>Rock beats Scissors</li>
     </ul>
 
-
+<!-- TAGS FOR AUDIO FILES-->
+    <audio id="winsound">
+      <source src="assets/sounds/win.wav" type="audio/wav">
+    </audio>
+    <audio id="losesound">
+      <source src="assets/sounds/lose.wav" type = "audio/wav">
+    </audio>
+    <audio id="tiesound">
+        <source src="assets/sounds/tie.wav" type="audio/wav">
+    </audio>
 
   </body>
 

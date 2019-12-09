@@ -3,20 +3,65 @@ body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-p.playerwins {
+th.sbcellwin {
   font-weight: bold;
   font-size:18pt;
   color: green;
+  border-top:2px solid black;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:0;
 }
 
-p.playerlosses {
+th.sbcelllose {
   font-weight: bold;
   font-size:18pt;
   color: red;
+  border-top:2px solid black;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:0;
 }
 
-p.playerties {
+th.sbcelltie {
   font-weight: bold;
   font-size:18pt;
   color: grey;
+  border-top:2px solid black;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:0;
+}
+td.sbcellwin {
+  font-weight: bold;
+  font-size:18pt;
+  text-align:center;
+  color: green;
+  border-top:0;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:2px solid black;
+}
+
+td.sbcelllose {
+  font-weight: bold;
+  font-size:18pt;
+  text-align:center;
+  color: red;
+  border-top:0;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:2px solid black;
+}
+
+
+td.sbcelltie {
+  font-weight: bold;
+  font-size:18pt;
+  text-align:center;
+  color: grey;
+  border-top:0;
+  border-left:2px solid black;
+  border-right:2px solid black;
+  border-bottom:2px solid black;
 }
