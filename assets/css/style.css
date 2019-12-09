@@ -3,10 +3,46 @@ body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+h1 {
+  text-align:center;
+}
+
+h2 {
+  margin:0:
+}
+
+p {
+  margin:0;
+}
+ol {
+  margin:0;
+
+}
+
+ul {
+  margin:0;
+}
+
+
+div.scoreboard {
+  width:100%;
+  height: 75px;
+  border:2px solid blue;
+  display:none;  //scoreboard is hidden when game starts.
+}
+table.scoreboard {
+  border:px solid blue;
+  border-collapse:collapse;
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 th.sbcellwin {
   font-weight: bold;
   font-size:18pt;
   color: green;
+  width:33%;
   border-top:2px solid black;
   border-left:2px solid black;
   border-right:2px solid black;

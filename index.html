@@ -29,7 +29,7 @@
       function isValid(user) {
         // the parameter "user" is the user's keystroke
         // returns True if the the user input is one of "r", "p" or "s", False otherwise.
-        console.log(user);
+        // console.log(user);
         return (user =="s" || user == "r" || user == "p")
         
       }
@@ -43,15 +43,15 @@
         // a retrun value of 2 is a user loss
         var rslt = 0; //assume a tie 
 
-        console.log("executing isWinner");
-        console.log(" user move is " + user);
-        console.log("computer move is " + cmp);
+        // console.log("executing isWinner");
+        // console.log(" user move is " + user);
+        // console.log("computer move is " + cmp);
 
         //test for a tie, first, since that is the easiest test to make.
         if (user == cmp) {
           rslt = 0;  //TIE
           Ties += 1;
-          console.log("TIE");
+          // console.log("TIE");
           return rslt;
         }
 
@@ -60,25 +60,25 @@
           rslt =  1; // player win
           userWins += 1;
 
-          console.log("PLAYER WINs: " + userWins);
+          // console.log("PLAYER WINs: " + userWins);
         }
         else if (user == "r" && cmp == "s") {
           //if user move is r it beats scissors and loses to all others
           rslt =  1; //player win
           userWins += 1;
-          console.log("PLAYER WINs: " + userWins);
+          // console.log("PLAYER WINs: " + userWins);
         }
         else if (user == "p" && cmp == "r") {
           //if user move is p it beats rock and loses to all others
           rslt =  1;
           userWins +=1
-          console.log("PLAYER WINs: " + userWins);
+          // console.log("PLAYER WINs: " + userWins);
         }
         else {
           //if we get here, the user lost the match
           rslt = 2;
           userLosses += 1;
-          console.log("PLAYER LOSS");
+          // console.log("PLAYER LOSS");
         }
 
 
@@ -90,19 +90,19 @@
 
       function playsound(soundid) {
         var x;
-        console.log("in playsound function, value of soundid is: "+ soundid);
+        // console.log("in playsound function, value of soundid is: "+ soundid);
         if (soundid == 0) {
-          console.log("play tie sound");
+          // console.log("play tie sound");
           x = document.getElementById("tiesound"); 
           x.play(); 
         }
         else if (soundid == 1) {
-          console.log("play win sound");
+          // console.log("play win sound");
           x = document.getElementById("winsound"); 
           x.play(); 
         }
         else {
-          console.log("play lose sound");
+          // console.log("play lose sound");
           x = document.getElementById("losesound"); 
           x.play(); 
 
@@ -116,28 +116,28 @@
         //ensure user picked one of "r", "p" or "s"
         if (isValid(userGuess)) {
           //get computer move, and compare it to the user input to see who wins
-          console.log("user choice " + userGuess); // report whether input is valid
+          // console.log("user choice " + userGuess); // report whether input is valid
 
          //now get the computer choice
         // Randomly choose a choice from the options array. This is the Computer's guess.
         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        console.log("computer choice is: " + computerGuess);
+        // console.log("computer choice is: " + computerGuess);
         
         // call the function that determines if user wins, loses or ties. a return value of 0 is a user tie, 1 is user win, 2 is user loss
         var temp = isWinner(userGuess, computerGuess);
-        console.log("isWinner result is: " + temp);
+        // console.log("isWinner result is: " + temp);
         playsound(temp);
         if (temp == 0) {
           //user ties
-          console.log("TIE");  
-          console.log("play tie sound")      ;
+          // console.log("TIE");  
+          // console.log("play tie sound")      ;
 
         }
         else if (temp == 1) {
-          console.log("USER WIN");
+          // console.log("USER WIN");
         }
         else {
-          console.log("USER LOSS");
+          // console.log("USER LOSS");
         }
 
         }
@@ -148,8 +148,8 @@
 
         // write out  wins, losses, ties
         
-        console.log("updating scores below");
-        console.log("make scoreboard visible")
+        // console.log("updating scores below");
+        // console.log("make scoreboard visible")
         document.getElementById("scoreboard").style.display="block";
          document.getElementById("wins").innerHTML = userWins;
          document.getElementById("losses").innerHTML =  userLosses;
@@ -157,10 +157,10 @@
       }
     </script>
 
-    <h1 style="text-align:center;">PLAY THE GAME 'Rock, Paper, Scissors' AGAINST THE COMPUTER!</h1>
+    <h1>PLAY THE GAME 'Rock, Paper, Scissors' AGAINST THE COMPUTER!</h1>
 
-    <div id="scoreboard" style="width:100%;height: 75px;border:2px solid blue;display:none;">
-      <table style="border:px solid blue;border-collapse:collapse;width:50%;margin-left:auto;margin-right:auto;">
+    <div id="scoreboard" class="scoreboard">
+      <table class="scoreboard">
         <tr>
           <th class="sbcellwin">WINS</th>
           <th class="sbcelllose">LOSSES</th>
@@ -176,10 +176,6 @@
     </div>
 
 
-    <!-- <p class = "playerwins"id="wins">Wins: </p>
-      <p class="playerlosses" id="losses">Losses: </p>
-      <p class="playerties" id="ties">Ties: </p> -->
-
     <div style="margin-left:auto;margin-right:auto;float:left;">
       <img style="margin-right:25pt;border:2px solid green;" src="assets/images/RPS.png"
         alt="Rock, Paper, Scissors image.">
@@ -189,7 +185,7 @@
     <h2>Rules of the game</h2>
     <p>the rules for this game are simple:</p>
     <ol style="margin-left:25pt;">
-      <li>You press a key on your keyboard to select your move.</strong></li>
+      <li>Press the "r", "s" or "p" key on your keyboard to select your move.</strong></li>
       <li>The computer selects its move randomly.</li>
       <li>Your move is compared to the computer's move to determine the winner.</li>
 
@@ -199,16 +195,18 @@
     <ul>
       <li>Start play by pressing a key on your keyboard to select your move. <strong>You must press only the keys "R", "P", or
           "S".</strong></li>
-      <li>press "r" to select "rock" for your move. ("p" selects Paper, and "s" selects "scissors".</li>
+      <li>press "<b>R</b>" to select "rock" for your move.
+      <li> press "<b>P</b>" to  select Paper</li>
+      <li> press "<b>S</b>" to select Scissors".</li>
     </ul>
 
     <h2>How a winning move is determined</h2>
     <p>A winning move is determined according to these rules:</p>
 
     <ul>
-        <li>Scissors beats Paper</li>
-        <li>Paper beats Rock</li>
-        <li>Rock beats Scissors</li>
+        <li>Scissors beats Paper, and loses to all others</li>
+        <li>Paper beats Rock, and loses to all others</li>
+        <li>Rock beats Scissors, and loses to all others</li>
     </ul>
 
 <!-- TAGS FOR AUDIO FILES-->
